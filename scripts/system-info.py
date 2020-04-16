@@ -41,14 +41,14 @@ if cpu_p > 80:
 elif cpu_p > 30:
     cpu_color = '#[bg=yellow]#[fg=black]'
 else:
-    cpu_color = '#[bg=black]#[fg=blue]'
+    cpu_color = '#[bg=green]#[fg=white]'
 
 if mem.percent > 80:
     mem_color = '#[bg=red]#[fg=white]'
 elif mem.percent > 30:
     mem_color = '#[bg=yellow]#[fg=black]'
 else:
-    mem_color = '#[bg=black]#[fg=blue]'
+    mem_color = '#[bg=green]#[fg=white]'
 
 status_text += '{} {}{:.1f}Gx{} {}%{} {}{:.1f}G {:.1f}%{}'.format(
     default_color,
