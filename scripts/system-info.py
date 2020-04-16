@@ -35,7 +35,6 @@ status_text += text
 cpu_p = psutil.cpu_percent(interval=1)
 
 mem = psutil.virtual_memory()
-mem_p = mem.used / mem.total * 100
 
 if cpu_p > 80:
     cpu_color = '#[bg=red]#[fg=white]'
@@ -44,20 +43,20 @@ elif cpu_p > 30:
 else:
     cpu_color = '#[bg=black]#[fg=blue]'
 
-if mem_p > 80:
+if mem.percent > 80:
     mem_color = '#[bg=red]#[fg=white]'
-elif mem_p > 30:
+elif mem.percent > 30:
     mem_color = '#[bg=yellow]#[fg=black]'
 else:
     mem_color = '#[bg=black]#[fg=blue]'
 
-status_text += '{} {}{}% {:.1f}Gx{}{} {}{:.1f}G {:.2f}%{}'.format(
+status_text += '{} {}{:.1f}Gx{} {}%{} {}{:.1f}G {:.1f}%{}'.format(
     default_color,
     cpu_color,
-    cpu_p, psutil.cpu_freq().current / 1000, psutil.cpu_count(),
+    psutil.cpu_freq().current / 1000, psutil.cpu_count(), cpu_p,
     default_color,
     mem_color,
-    mem.total / 1000000000, mem_p,
+    mem.total / 1000000000, mem.percent,
     default_color)
 
 # ----------------------------------------------------------------
