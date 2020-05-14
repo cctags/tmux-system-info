@@ -56,10 +56,16 @@ elif mem.percent > 30:
 else:
     mem_color = '#[bg=green]#[fg=white]'
 
+try:
+    cpu_freq_current = psutil.cpu_freq().current / 1000
+except NotImplementedError:
+    cpu_freq_current = 0.0
+
 status_text += '{} {}{:.1f}Gx{} {}%{} {}{:.1f}G {:.1f}%{}'.format(
     default_color,
     cpu_color,
-    psutil.cpu_freq().current / 1000, psutil.cpu_count(), cpu_p,
+    cpu_freq_current,
+    psutil.cpu_count(), cpu_p,
     default_color,
     mem_color,
     mem.total / 1000000000, mem.percent,
