@@ -2,8 +2,14 @@
 
 import datetime
 import os
-import psutil
+import sys
 import time
+
+try:
+    import psutil
+except ImportError as e:
+    print('PLUGIN ERROR: {}'.format(e.msg))
+    sys.exit(0)
 
 status_text = str()
 
